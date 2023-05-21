@@ -11,7 +11,6 @@ export const App = () => {
   const [query, setQuery] = useState('');
   const [page, setPage] = useState(1);
   const [images, setImages] = useState([]);
-  const [perPage, setPerPage] = useState(12);
   const [totalResults, setTotalResults] = useState(0);
   const [error, setError] = useState(null);
   const [showGallery, setShowGallery] = useState(false);
@@ -23,13 +22,14 @@ export const App = () => {
     if (prevQuery !== query || prevPage !== page) {
       getPhotos(query, page);
     }
+    setPrevQuery(query);
+    setPrevPage(page);
   }, [query, page, prevPage, prevQuery]);
 
   const handleSubmit = data => {
     setQuery(data);
     setPage(1);
     setImages([]);
-    setPerPage(12);
     setTotalResults(0);
     setError(null);
     setShowGallery(false);
